@@ -1,10 +1,10 @@
 {
   "name": "limitless-google-translate",
   "version": "1.0.0",
-  "description": "Translate large texts using the google-translate-api for NodeJS! The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once at 255 per request. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the texts. This is all done asynchronously, so it won't block your code midway! ",
+  "description": "Translate large texts using the google-translate-api for NodeJS! The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once at 255 per request. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the text. This is all done asynchronously, so it won't block your code midway! ",
   "main": "engine.js",
   "scripts": {
-    "test": "node test.js 'This is the test command, it should be translated to Portuguese. Translate large texts using the google-translate-api for NodeJS! The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once at 255 per request. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the texts. This is all done asynchronously, so it will not block your code midway!' "
+    "test": "node test.js 'This is the test command, it should be translated to Portuguese. Translate large texts using the google-translate-api for NodeJS! The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once at 255 per request. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the text. This is all done asynchronously, so it will not block your code midway!' "
   },
   "repository": {
     "type": "git",

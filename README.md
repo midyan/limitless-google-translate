@@ -4,7 +4,7 @@
 
 
 ### The magic itself:
-The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once at 255 per request. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the texts. This is all done asynchronously, so it won't block your code midway!
+The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once at 255 per request. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the text. This is all done asynchronously, so it won't block your code midway!
 
 ### The package:
 It return an object with a single method: translate. Couldn't be simpler!
