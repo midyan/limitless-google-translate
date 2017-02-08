@@ -34,7 +34,7 @@ var splitString = (string) => {
   * @param  {String}  language    Language that the array will be translated to. i.e: 'en' for English, 'fr' for French.
   * @return {Promise}             Returns a promise after it is finished
   */
-var translate = (string, language) => {
+var translate = (string, options) => {
   var dfd = q.defer()
 
   var array = splitString(string)
@@ -49,7 +49,7 @@ var translate = (string, language) => {
 
   array.forEach( (outside, i) => {
     outside.forEach( (inside, j) => {
-      google_translate(inside, {to: language}).then((res) => {
+      google_translate(inside, options).then((res) => {
         translatedArray[i][j] = res.text
         amount++
         if (amount == totalLength) {

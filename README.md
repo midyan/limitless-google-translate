@@ -22,7 +22,7 @@ It return an object with a single method: translate. Couldn't be simpler!
 
   And use it at will!
   ```sh
-  limitless.translate(VERY_LARGE_TEXT_HERE, 'pt')
+  limitless.translate(VERY_LARGE_TEXT_HERE, {to: 'pt'})
     .then( (result) => {
       console.log( result )
     })
