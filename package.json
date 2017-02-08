@@ -1,6 +1,6 @@
 {
   "name": "limitless-google-translate",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Translate large texts using the google-translate-api for NodeJS!",
   "main": "engine.js",
   "scripts": {
