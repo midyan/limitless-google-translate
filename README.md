@@ -35,8 +35,10 @@ It return an object with a single method: translate. Couldn't be simpler!
   ```sh
   result: {
     text:, // Fully translated text
-    response: [][] //Ordered 2D array in sequence with all the sentences translated. The object inside
-                   //each element of the array is the as describe here: https://github.com/matheuss/google-translate-api#returns-an-object
+    response: [][] //Ordered 2D array in sequence with all the
+                   //sentences translated. The object inside
+                   //each element of the array is the as describe here:
+                   //https://github.com/matheuss/google-translate-api#returns-an-object
   }
   ```
 ## Found a bug or want to improve this somehow?
