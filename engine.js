@@ -1,5 +1,6 @@
 const google_translate = require('google-translate-api')
 const fs = require('fs')
+const _ = require('lodash')
 const q = require('q')
 
 /**
@@ -39,7 +40,8 @@ var translate = (string, options) => {
 
   var array = splitString(string)
 
-  var translatedArray = array.slice() // Creates copy of array to another part of the memory
+  var translatedArray = _.cloneDeep(array) // Creates copy of array to another part of the memory
+  var objectArray = _.cloneDeep(array)  // Creates copy of array to another part of the memory
   var totalLength = 0
   var amount = 0
 
@@ -50,14 +52,34 @@ var translate = (string, options) => {
   array.forEach( (outside, i) => {
     outside.forEach( (inside, j) => {
       google_translate(inside, options).then((res) => {
+
+        objectArray[i][j] = {
+          text: res.text,
+          from: {
+            language: {
+              didYouMean: res.from.language.didYouMean,
+              iso: res.from.language.iso
+            },
+            text: {
+              autoCorrected: res.from.text.autoCorrected,
+              value: res.from.text.value,
+              didYouMean: res.from.text.didYouMean
+            }
+          },
+          raw: res.raw
+        }
         translatedArray[i][j] = res.text
+
         amount++
+
         if (amount == totalLength) {
           for(var k = 0; k<translatedArray.length; k++) {
             translatedArray[k] = translatedArray[k].join(', ')
           }
-          dfd.resolve(translatedArray.join('. '))
+          
+          dfd.resolve({text: translatedArray.join('. '), response: objectArray})
         }
+
       }).catch((err) => {
         dfd.reject(err)
       })

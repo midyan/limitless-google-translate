@@ -1,8 +1,8 @@
 var limitless = require('./engine.js')
 
-limitless.translate(process.argv[2], 'pt')
+limitless.translate(process.argv[2], {to:'pt'})
 .then( (result) => {
-  console.log( result )
+  console.log(result)
 })
 .catch( (err) => {
   console.log( new Error(err) )

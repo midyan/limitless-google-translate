@@ -33,6 +33,7 @@
   "homepage": "https://github.com/midyan/limitless-google-translate#readme",
   "dependencies": {
     "google-translate-api": "^2.2.2",
+    "lodash": "^4.17.4",
     "q": "^1.4.1"
   }
 }
