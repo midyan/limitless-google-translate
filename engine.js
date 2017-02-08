@@ -11,20 +11,23 @@ const q = require('q')
   */
 var splitString = (string) => {
 
-  var array = string.split('. ')
+  var count = 0
+  var array = string.replace(/(\r\n|\n|\r)/g,"").split('. ') // Replaces escaping
   var length = array.length
   var array2d = []
 
   for( var i = 0; i < length; i++) {
     if( array[i].length >= 254) {
       array[i] = array[i].split(', ')
+      count += array[i].length
     } else {
       array[i] = [array[i]]
+      count += array[i].length
     }
     array2d[i] =  array[i]
   }
 
-  return array2d
+  return {array: array2d, count: count}
 
 }
 
@@ -37,20 +40,21 @@ var splitString = (string) => {
   */
 var translate = (string, options) => {
   var dfd = q.defer()
+  var coreObj = splitString(string)
 
-  var array = splitString(string)
+  var array = coreObj.array
+  var totalLength = coreObj.count
 
   var translatedArray = _.cloneDeep(array) // Creates copy of array to another part of the memory
   var objectArray = _.cloneDeep(array)  // Creates copy of array to another part of the memory
-  var totalLength = 0
   var amount = 0
 
-  for( var i = 0; i<array.length; i++) {
-    totalLength += array[i].length
-  }
 
-  array.forEach( (outside, i) => {
-    outside.forEach( (inside, j) => {
+  console.log(totalLength)
+
+  _.map(translatedArray, (outside, i) => {
+
+    return _.map(outside, (inside, j) => {
       google_translate(inside, options).then((res) => {
 
         objectArray[i][j] = {
@@ -73,17 +77,20 @@ var translate = (string, options) => {
         amount++
 
         if (amount == totalLength) {
+
           for(var k = 0; k<translatedArray.length; k++) {
             translatedArray[k] = translatedArray[k].join(', ')
           }
-          
+
           dfd.resolve({text: translatedArray.join('. '), response: objectArray})
         }
 
       }).catch((err) => {
         dfd.reject(err)
       })
+
     })
+
   })
 
   return dfd.promise
