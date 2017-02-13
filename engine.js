@@ -97,5 +97,6 @@ var translate = (string, options) => {
 }
 
 module.exports = {
-  translate: translate
+  translate: translate,
+  legacy: google_translate
 }
