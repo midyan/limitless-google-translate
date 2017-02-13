@@ -31,7 +31,18 @@ It return an object with a single method: translate. Couldn't be simpler!
     })
   ```
 
-##The returned result is an object with the following attributes:
+  Do you with to use the regular and limited google-translate-api? Just do:
+  ```sh
+  limitless.legacy.translate(BORING_SMALL_TEXT_HERE, {to: 'pt'})
+    .then( (result) => {
+      console.log( result.text )
+    })
+    .catch( (err) => {
+      console.log( new Error(err) )
+    })
+  ```
+  The legacy object is a direct import from the regular api, so to use it just refer to <a href="https://www.npmjs.com/package/google-translate-api">here</a>
+##The returned result is an object with the following attributes
   ```sh
   result: {
     text:, // Fully translated text
