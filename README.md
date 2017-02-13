@@ -42,6 +42,7 @@ It return an object with a single method: translate. Couldn't be simpler!
     })
   ```
   The legacy object is a direct import from the regular api, so to use it just refer to <a href="https://www.npmjs.com/package/google-translate-api">here</a>
+  
 ##The returned result is an object with the following attributes
   ```sh
   result: {
