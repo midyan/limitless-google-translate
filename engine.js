@@ -14,21 +14,21 @@ var splitString = (string) => {
 
   var count = 0
   var amount = 0
-  var array = string.replace(/(\r\n|\n|\r)/g,"").split('. ') // Replaces escaping
+  var array = string.replace(/(\r\n|\n|\r)/g, '').split('. ') // Replaces escaping
   var length = array.length
   var array2d = []
 
   _.forEach(array, (text, i) => {
     amount++
-    if( text.length >= 254) {
+    if (text.length >= 254) {
       array[i] = array[i].split(', ')
       count += array[i].length
     } else {
       array[i] = [array[i]]
       count += array[i].length
     }
-    array2d[i] =  array[i]
-    if(amount == length) {
+    array2d[i] = array[i]
+    if (amount == length) {
       dfd.resolve({array: array2d, count: count})
     }
   })
@@ -47,13 +47,13 @@ var translate = (string, options) => {
   var dfd = q.defer()
 
   splitString(string)
-    .then((coreObj) =>{
+    .then((coreObj) => {
 
       var array = coreObj.array
       var totalLength = coreObj.count
 
       var translatedArray = _.cloneDeep(array) // Creates copy of array to another part of the memory
-      var objectArray = _.cloneDeep(array)  // Creates copy of array to another part of the memory
+      var objectArray = _.cloneDeep(array) // Creates copy of array to another part of the memory
       var amount = 0
 
       _.map(translatedArray, (outside, i) => {
@@ -82,22 +82,20 @@ var translate = (string, options) => {
             amount++
 
             if (amount == totalLength) {
-
-              for(var k = 0; k<translatedArray.length; k++) {
+              for (var k = 0; k < translatedArray.length; k++) {
                 translatedArray[k] = translatedArray[k].join(', ')
               }
 
               dfd.resolve({text: translatedArray.join('. '), response: objectArray})
             }
-
           }).catch((err) => {
             dfd.reject(err)
           })
-
         })
-
       })
-
+    })
+    .catch((err) => {
+      dfd.reject(err)
     })
 
   return dfd.promise
