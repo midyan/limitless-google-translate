@@ -2,6 +2,7 @@ const google_translate = require('google-translate-api')
 const fs = require('fs')
 const _ = require('lodash')
 const q = require('q')
+const chars = 1000
 
 /**
   * Analyzes the string input to make sure that no array item has more than 254 characters
@@ -20,7 +21,7 @@ var splitString = (string) => {
 
   _.forEach(array, (text, i) => {
     amount++
-    if (text.length >= 254) {
+    if (text.length >= chars) {
       array[i] = array[i].split(', ')
       count += array[i].length
     } else {

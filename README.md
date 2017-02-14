@@ -4,7 +4,7 @@
 
 
 ### The magic itself:
-The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once at 255 per request. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the text. This is all done asynchronously, so it won't block your code midway!
+The google-translate-api uses query string in a GET method to send the text to be translated to the translation service. This limits the amount a characters you can translate at once. This package chops the texts into smaller, coherent sentences, translates them and mount them back together into the text. This is all done asynchronously, so it won't block your code midway!
 
 ### The package:
 It return an object with a single method: translate. Couldn't be simpler!
@@ -31,9 +31,9 @@ It return an object with a single method: translate. Couldn't be simpler!
     })
   ```
 
-  Do you with to use the regular and limited google-translate-api? Just do:
+  Do you wish to use the regular and limited google-translate-api? Just do:
   ```sh
-  limitless.legacy.translate(BORING_SMALL_TEXT_HERE, {to: 'pt'})
+  limitless.legacy(BORING_SMALL_TEXT_HERE, {to: 'pt'})
     .then( (result) => {
       console.log( result.text )
     })
@@ -42,7 +42,7 @@ It return an object with a single method: translate. Couldn't be simpler!
     })
   ```
   The legacy object is a direct import from the regular api, so to use it just refer to <a href="https://www.npmjs.com/package/google-translate-api">here</a>
-  
+
 ##The returned result is an object with the following attributes
   ```sh
   result: {
