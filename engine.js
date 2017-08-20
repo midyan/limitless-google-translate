@@ -1,5 +1,4 @@
 const google_translate = require('google-translate-api')
-const fs = require('fs')
 const _ = require('lodash')
 const q = require('q')
 const chars = 1000
